@@ -45,9 +45,9 @@
 			let eRemove = $(`<div class="finder-item-remove">x</div>`);
 			target.append(eRemove);
 			eRemove.click(function(){
-				onRemove();
 				eRemove.remove();
 				target.remove();
+				onRemove();
 			});
 			return eRemove;
 		}
