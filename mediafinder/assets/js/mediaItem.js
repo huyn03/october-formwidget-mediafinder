@@ -1,4 +1,4 @@
- function mediaItem(type, size, onRemove = function(){}){
+ function mediaItem(type, size, onRemove = null){
  	let me = {};
 
 	let imageEts = ['jpg', 'jpeg', 'png', 'webpx', 'webp'];
@@ -54,7 +54,8 @@
 
 		let target = $(html);
 		target[0].media_path = path; 
-		removeItem(target);
+		if(typeof onRemove == 'function')
+			removeItem(target);
 		return target;
 	}
 
