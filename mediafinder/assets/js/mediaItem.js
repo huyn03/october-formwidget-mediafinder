@@ -1,4 +1,4 @@
- function mediaItem(type, size, onRemove = null){
+ function mediaItem(type, size, events = {}){
  	let me = {};
 
 	let imageEts = ['jpg', 'jpeg', 'png', 'webpx', 'webp'];
@@ -45,16 +45,18 @@
 			let eRemove = $(`<div class="finder-item-remove">x</div>`);
 			target.append(eRemove);
 			eRemove.click(function(){
+				if(typeof events.onBeforeRemove == 'function')
+					events.onBeforeRemove();
 				eRemove.remove();
 				target.remove();
-				onRemove();
+				events.onRemove();
 			});
 			return eRemove;
 		}
 
 		let target = $(html);
 		target[0].media_path = path; 
-		if(typeof onRemove == 'function')
+		if(typeof events.onRemove == 'function')
 			removeItem(target);
 		return target;
 	}

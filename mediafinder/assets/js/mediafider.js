@@ -97,9 +97,13 @@ $.fn.mediafinder = function(params = {}){
 		return eContainer;
 	})();
 
-	let mediaitem = mediaItem(type, size, function(){
-		finderItem.append(choiseAction);
-		updateTrigerValue();
+	let mediaitem = mediaItem(type, size, {
+		onRemove:function(){
+			updateTrigerValue();
+		},
+		onBeforeRemove: function(){
+			finderItem.append(choiseAction);
+		}
 	});
 
 	function appendItem(target, path){
