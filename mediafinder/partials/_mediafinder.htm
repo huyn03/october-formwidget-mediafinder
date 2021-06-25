@@ -1,0 +1,32 @@
+<?php if ($this->previewMode): ?>
+
+    <div class="form-control">
+        <?= $value ?>
+    </div>
+
+<?php else: ?>
+
+    <input
+        type="hidden"
+        id="<?= $this->getId('input') ?>"
+        name="<?= $name ?>"
+        value='<?= $value ?>'
+        class="form-control"
+        autocomplete="off" />
+
+    <div id="mediafinder">
+        
+    </div>
+
+    <script type="text/javascript">
+        $('#mediafinder').mediafinder({
+            width: '<?= $imageWidth ?>',
+            height: '<?= $imageHeight ?>',
+            type: '<?= $mode ?>', 
+            value: '<?= $value ?>',
+            onChange: function(value){
+                $(`#<?= $this->getId('input') ?>`).val(value);
+            }
+        });
+    </script>
+<?php endif ?>
